@@ -9,4 +9,7 @@ A new Flutter project.
 - With an intuitive interface and essential features.
 
 ## Features 
+- A list view to display your contacts.
+- Each Listtile is editable.
+- 
 
