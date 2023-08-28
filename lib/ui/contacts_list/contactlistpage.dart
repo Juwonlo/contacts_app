@@ -10,18 +10,21 @@ class ContactListPage extends StatelessWidget {
       appBar: AppBar(
         
       ),
-      body: ListView.builder(
-        itemCount: 30,
-          itemBuilder: (context, index){
-            return Center(
-              child: Text('Contact test',
-                style: TextStyle(
-                  fontSize: 30,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: 30,
+            itemBuilder: (context, index){
+              return Center(
+                child: Text('Contact test',
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
                 ),
-              ),
-            );
-          }
+              );
+            }
 
+        ),
       ),
     );
   }
