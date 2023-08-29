@@ -16,9 +16,16 @@ class ContactListPage extends StatelessWidget {
           itemCount: 30,
             itemBuilder: (context, index){
               return Center(
-                child: Text('Contact test',
-                  style: TextStyle(
-                    fontSize: 30,
+                child: Container(
+                  margin: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                  ),
+                  child: Text('Contact test',
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                 ),
               );
