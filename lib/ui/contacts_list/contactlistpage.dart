@@ -23,9 +23,16 @@ class ContactListPage extends StatelessWidget {
                     border: Border.all(width: 2, color: Colors.blue),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: Text('Contact test',
-                    style: TextStyle(
-                      fontSize: 30,
+                  child: ListTile(
+                    title: Text('0902345678',
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                    subtitle: Text('Mutii',
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
                     ),
                   ),
                 ),
