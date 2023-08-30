@@ -20,7 +20,7 @@ class ContactListPage extends StatelessWidget {
                   margin: EdgeInsets.all(8.0),
                   padding: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.black),
+                    border: Border.all(width: 2, color: Colors.blue),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Text('Contact test',
