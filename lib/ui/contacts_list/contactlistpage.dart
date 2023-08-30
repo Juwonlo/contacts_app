@@ -31,7 +31,8 @@ class ContactListPage extends StatelessWidget {
                     ),
                     subtitle: Text('Mutii',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 12,
+                        color: Colors.grey,
                       ),
                     ),
                   ),
