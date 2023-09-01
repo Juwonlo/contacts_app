@@ -24,7 +24,10 @@ class _ContactListPageState extends State<ContactListPage> {
   }
 
   getAllContacts() async {
-
+    List<Contact> _contacts = await ContactsService.getContacts(withThumbnails: false);
+    setState(() {
+      contacts = _contacts;
+    });
   }
 
 
@@ -37,8 +40,9 @@ class _ContactListPageState extends State<ContactListPage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView.builder(
-          itemCount: 30,
+          itemCount: contacts.length,
             itemBuilder: (context, index){
+            Contact contact = contacts[index];
               return Center(
                 child: Container(
                   margin: EdgeInsets.all(8.0),
@@ -48,12 +52,12 @@ class _ContactListPageState extends State<ContactListPage> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: ListTile(
-                    title: Text('0902345678',
+                    title: Text(contact.displayName!,
                       style: TextStyle(
                         fontSize: 30,
                       ),
-                    ),
-                    subtitle: Text('Mutii',
+                   ),
+                    subtitle: Text(contact.phones!.elementAt(0).value!,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
