@@ -1,8 +1,32 @@
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 
-class ContactListPage extends StatelessWidget {
-  const ContactListPage({Key? key}) : super(key: key);
+
+class ContactListPage extends StatefulWidget {
+  ContactListPage({Key? key}) : super(key: key);
+
+
+
+  @override
+  State<ContactListPage> createState() => _ContactListPageState();
+
+}
+
+class _ContactListPageState extends State<ContactListPage> {
+
+  List<Contact> contacts = [];
+
+  @override
+  void initState (){
+    super.initState();
+    getAllContacts();
+  }
+
+  getAllContacts() async {
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
