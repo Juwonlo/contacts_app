@@ -63,6 +63,13 @@ class _ContactListPageState extends State<ContactListPage> {
                         color: Colors.grey,
                       ),
                     ),
+                    leading: (contact.avatar == null && contact.avatar!.isNotEmpty) ?
+                    CircleAvatar(
+                      backgroundImage: MemoryImage(contact.avatar!),
+                    ) :
+                        CircleAvatar(
+                          child: Text(contact.initials()),
+                        )
                   ),
                 ),
               );
