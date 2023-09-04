@@ -16,20 +16,35 @@ class ContactListPage extends StatefulWidget {
 class _ContactListPageState extends State<ContactListPage> {
 
   List<Contact> contacts = [];
+  List<Contact> contactsFiltered = [];
+  TextEditingController searchController = new TextEditingController();
 
   @override
   void initState (){
     super.initState();
     getAllContacts();
+    searchController.addListener(() {
+          filterContacts();
+    });
   }
 
   getAllContacts() async {
-    List<Contact> _contacts = await ContactsService.getContacts(withThumbnails: false);
+    List<Contact> _contacts = (await ContactsService.getContacts()).toList();
     setState(() {
       contacts = _contacts;
     });
   }
 
+  filterContacts(){
+      List<Contact> _contacts = [];
+      _contacts.addAll(contacts);
+      if (searchController.text.isNotEmpty) {
+        // _contacts.retainWhere((contact) {
+        //   String searchTerm = searchController.text.toLowerCase();
+        //   String contactName = contact.displayName!.toLowerCase();
+        // });
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,43 +53,68 @@ class _ContactListPageState extends State<ContactListPage> {
         
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: contacts.length,
-            itemBuilder: (context, index){
-            Contact contact = contacts[index];
-              return Center(
-                child: Container(
-                  margin: EdgeInsets.all(8.0),
-                  padding: EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 2, color: Colors.blue),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: ListTile(
-                    title: Text(contact.displayName!,
-                      style: TextStyle(
-                        fontSize: 30,
-                      ),
-                   ),
-                    subtitle: Text(contact.phones!.elementAt(0).value!,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    labelText: "Search",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
-                    leading: (contact.avatar == null && contact.avatar!.isNotEmpty) ?
-                    CircleAvatar(
-                      backgroundImage: MemoryImage(contact.avatar!),
-                    ) :
-                        CircleAvatar(
-                          child: Text(contact.initials()),
-                        )
+                    prefixIcon: Icon(
+                      Icons.search,
+                    color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
-              );
-            }
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: contacts.length,
+                    itemBuilder: (context, index){
+                    Contact contact = contacts[index];
+                      return Center(
+                        child: Container(
+                          margin: EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 2, color: Colors.blue),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: ListTile(
+                            title: Text(contact.displayName!,
+                              style: TextStyle(
+                                fontSize: 30,
+                              ),
+                           ),
+                            subtitle: Text(contact.phones!.elementAt(0).value!,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            leading: (contact.avatar == null && contact.avatar!.isNotEmpty) ?
+                            CircleAvatar(
+                              backgroundImage: MemoryImage(contact.avatar!),
+                            ) :
+                                CircleAvatar(
+                                  child: Text(contact.initials()),
+                                )
+                          ),
+                        ),
+                      );
+                    }
 
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
