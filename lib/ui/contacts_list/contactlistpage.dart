@@ -34,17 +34,34 @@ class _ContactListPageState extends State<ContactListPage> {
       contacts = _contacts;
     });
   }
-
+// First filtercontact function
   filterContacts(){
       List<Contact> _contacts = [];
       _contacts.addAll(contacts);
       if (searchController.text.isNotEmpty) {
-        // _contacts.retainWhere((contact) {
-        //   String searchTerm = searchController.text.toLowerCase();
-        //   String contactName = contact.displayName!.toLowerCase();
-        // });
+        _contacts.retainWhere((contact) {
+          String searchTerm = searchController.text.toLowerCase();
+          String contactName = contact.displayName!.toLowerCase();
+          return contactName.contains(searchTerm);
+        });
       }
   }
+
+  // filterContacts() {
+  //   List<Contact> _filteredContacts = [];
+  //   if (searchController.text.isNotEmpty) {
+  //     String searchTerm = searchController.text.toLowerCase();
+  //     _filteredContacts = contacts.where((contact) {
+  //       String contactName = contact.displayName?.toLowerCase() ?? '';
+  //       return contactName.contains(searchTerm);
+  //     }).toList();
+  //   } else {
+  //     _filteredContacts.addAll(contacts);
+  //   }
+  //   setState(() {
+  //     contactsFiltered = _filteredContacts;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
