@@ -69,69 +69,66 @@ class _ContactListPageState extends State<ContactListPage> {
       appBar: AppBar(
         
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                child: TextField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    labelText: "Search",
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                      ),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              child: TextField(
+                controller: searchController,
+                decoration: InputDecoration(
+                  labelText: "Search",
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
                     ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                    color: Theme.of(context).primaryColor,
-                    ),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                  color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: contacts.length,
-                    itemBuilder: (context, index){
-                    Contact contact = contacts[index];
-                      return Center(
-                        child: Container(
-                          margin: EdgeInsets.all(8.0),
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 2, color: Colors.blue),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: ListTile(
-                            title: Text(contact.displayName!,
-                              style: TextStyle(
-                                fontSize: 30,
-                              ),
-                           ),
-                            subtitle: Text(contact.phones!.elementAt(0).value!,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            leading: (contact.avatar == null && contact.avatar!.isNotEmpty) ?
-                            CircleAvatar(
-                              backgroundImage: MemoryImage(contact.avatar!),
-                            ) :
-                                CircleAvatar(
-                                  child: Text(contact.initials()),
-                                )
-                          ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: contacts.length,
+                  itemBuilder: (context, index){
+                  Contact contact = contacts[index];
+                    return Center(
+                      child: Container(
+                        margin: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.blue),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                      );
-                    }
+                        child: ListTile(
+                          title: Text(contact.displayName!,
+                            style: TextStyle(
+                              fontSize: 30,
+                            ),
+                         ),
+                          subtitle: Text(contact.phones!.elementAt(0).value!,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          leading: (contact.avatar == null && contact.avatar!.isNotEmpty) ?
+                          CircleAvatar(
+                            backgroundImage: MemoryImage(contact.avatar!),
+                          ) :
+                              CircleAvatar(
+                                child: Text(contact.initials()),
+                              )
+                        ),
+                      ),
+                    );
+                  }
 
-                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
