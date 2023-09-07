@@ -44,6 +44,10 @@ class _ContactListPageState extends State<ContactListPage> {
           String contactName = contact.displayName!.toLowerCase();
           return contactName.contains(searchTerm);
         });
+
+        setState(() {
+          contactsFiltered = _contacts;
+        });
       }
   }
 
@@ -65,6 +69,7 @@ class _ContactListPageState extends State<ContactListPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSearching = searchController.text.isNotEmpty;
     return Scaffold(
       appBar: AppBar(
         
@@ -91,9 +96,9 @@ class _ContactListPageState extends State<ContactListPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: contacts.length,
+                itemCount: isSearching == true ? contactsFiltered.length : contacts.length,
                   itemBuilder: (context, index){
-                  Contact contact = contacts[index];
+                  Contact contact = isSearching == true ? contactsFiltered[index] : contacts[index];
                     return Center(
                       child: Container(
                         margin: EdgeInsets.all(8.0),
