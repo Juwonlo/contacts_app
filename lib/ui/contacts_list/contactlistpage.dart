@@ -1,3 +1,4 @@
+
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,14 @@ class _ContactListPageState extends State<ContactListPage> {
     });
   }
 
+  
+  String flattenPhoneNumber(String phoneStr){
+     return phoneStr.replaceAllMapped(RegExp(r'^(\+)|\D'), (Match m)  {
+
+       return m[0] == "+" ? "+" : "";
+     });
+  }
+  
   getAllContacts() async {
     List<Contact> _contacts = (await ContactsService.getContacts()).toList();
     setState(() {
@@ -41,8 +50,24 @@ class _ContactListPageState extends State<ContactListPage> {
       if (searchController.text.isNotEmpty) {
         _contacts.retainWhere((contact) {
           String searchTerm = searchController.text.toLowerCase();
+          String searchTermFlatten = flattenPhoneNumber(searchTerm);
           String contactName = contact.displayName!.toLowerCase();
-          return contactName.contains(searchTerm);
+          bool nameMatches =  contactName.contains(searchTerm);
+          if (nameMatches == true) {
+            return true;
+          }
+
+          if (searchTermFlatten.isEmpty) {
+            return false;
+          }
+
+          var phone = contact.phones?.firstWhere((phn) {
+
+            String phnFlattened = flattenPhoneNumber(phn.value!);
+            return phnFlattened.contains(searchTermFlatten);
+          }, orElse: null );
+
+          return phone != null;
         });
 
         setState(() {
@@ -51,21 +76,6 @@ class _ContactListPageState extends State<ContactListPage> {
       }
   }
 
-  // filterContacts() {
-  //   List<Contact> _filteredContacts = [];
-  //   if (searchController.text.isNotEmpty) {
-  //     String searchTerm = searchController.text.toLowerCase();
-  //     _filteredContacts = contacts.where((contact) {
-  //       String contactName = contact.displayName?.toLowerCase() ?? '';
-  //       return contactName.contains(searchTerm);
-  //     }).toList();
-  //   } else {
-  //     _filteredContacts.addAll(contacts);
-  //   }
-  //   setState(() {
-  //     contactsFiltered = _filteredContacts;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
