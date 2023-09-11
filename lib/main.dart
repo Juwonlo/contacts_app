@@ -17,7 +17,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ContactListPage(),
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: (){},
+        child: Icon(Icons.add),
+        ),
+        body: ContactListPage(),
+      )
     );
   }
 }
