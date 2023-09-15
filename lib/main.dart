@@ -1,4 +1,5 @@
 import 'package:contacts_app/ui/contacts_list/contactlistpage.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,20 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
-            onPressed: (){},
+            onPressed: () async{
+              try{
+                await ContactsService.openContactForm();
+              }on FormOperationException catch (e) {
+
+                switch(e.errorCode) {
+                  case FormOperationErrorCode.FORM_OPERATION_CANCELED:
+                  case FormOperationErrorCode.FORM_COULD_NOT_BE_OPEN:
+                  case FormOperationErrorCode.FORM_OPERATION_UNKNOWN_ERROR:
+                  case null:
+                    print(e.toString());
+                }
+              }
+            },
         child: Icon(Icons.add),
         ),
         body: ContactListPage(),
