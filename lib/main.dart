@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
             onPressed: () async{
               try{
-                await ContactsService.openContactForm();
+                Contact contact = await ContactsService.openContactForm();
+                if(contact = null!) {
+                }
               }on FormOperationException catch (e) {
 
                 switch(e.errorCode) {
