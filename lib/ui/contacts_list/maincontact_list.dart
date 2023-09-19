@@ -6,6 +6,7 @@ import '../../pages/app_contact.dart';
 import '../../pages/contact_details.dart';
 import '../contact_avatar.dart';
 
+
 class ContactsList extends StatelessWidget {
   final List<AppContact> contacts;
   Function() reloadContacts;
