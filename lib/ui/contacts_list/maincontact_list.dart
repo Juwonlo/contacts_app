@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../pages/app_contact.dart';
 import '../../pages/contact_details.dart';
-<<<<<<< HEAD
-import 'contact-avatar.dart';
-=======
 import '../contact_avatar.dart';
->>>>>>> 7684fe34d296a0a6615a6972b99bdbcf3d3b85ad
+
 
 class ContactsList extends StatelessWidget {
   final List<AppContact> contacts;
