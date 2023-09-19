@@ -11,5 +11,12 @@ A new Flutter project.
 ## Features 
 - A list view to display your contacts.
 - Each Listtile is editable.
-- 
+
+
+## Dependencies
+
+These are the packages used in this project:
+
+- [permission_handler](https://pub.dev/packages/permission_handler): A Flutter plugin to access and manage the device's contacts.
+- [contacts_service](https://pub.dev/packages/contacts_service): This plugin provides a cross-platform (iOS, Android) API to request permissions and check their status.
 
