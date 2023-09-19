@@ -1,11 +1,12 @@
-import 'package:contacts_app/app-contact.class.dart';
-import 'package:contacts_app/components/contact-avatar.dart';
+
 import 'package:contacts_app/pages/app_contact.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/contact_avatar.dart';
+
 class ContactDetails extends StatefulWidget {
-  ContactDetails(this.contact, {this.onContactUpdate, this.onContactDelete});
+  ContactDetails(this.contact, {required this.onContactUpdate, required this.onContactDelete});
 
   final AppContact contact;
   final Function(AppContact) onContactUpdate;
@@ -24,13 +25,13 @@ class _ContactDetailsState extends State<ContactDetails> {
     ];
 
     showDeleteConfirmation() {
-      Widget cancelButton = FlatButton(
+      Widget cancelButton = MaterialButton(
         child: Text('Cancel'),
         onPressed: () {
           Navigator.of(context).pop();
         },
       );
-      Widget deleteButton = FlatButton(
+      Widget deleteButton = MaterialButton(
         color: Colors.red,
         child: Text('Delete'),
         onPressed: () async {
@@ -71,6 +72,7 @@ class _ContactDetailsState extends State<ContactDetails> {
               case FormOperationErrorCode.FORM_OPERATION_CANCELED:
               case FormOperationErrorCode.FORM_COULD_NOT_BE_OPEN:
               case FormOperationErrorCode.FORM_OPERATION_UNKNOWN_ERROR:
+              case null:
                 print(e.toString());
             }
           }
@@ -139,7 +141,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                   children: <Widget>[
                     ListTile(title: Text("Phones")),
                     Column(
-                      children: widget.contact.info.phones
+                      children: widget.contact.info.phones!
                           .map(
                             (i) => Padding(
                           padding:

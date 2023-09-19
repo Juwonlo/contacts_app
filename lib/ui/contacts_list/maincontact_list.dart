@@ -3,6 +3,7 @@ import 'package:contacts_app/pages/contact-details.dart';
 import 'package:flutter/material.dart';
 
 import '../../pages/app_contact.dart';
+import '../../pages/contact_details.dart';
 import 'contact-avatar.dart';
 
 class ContactsList extends StatelessWidget {
