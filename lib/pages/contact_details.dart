@@ -4,8 +4,10 @@ import 'package:contacts_app/pages/app_contact.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/contact_avatar.dart';
+
 class ContactDetails extends StatefulWidget {
-  ContactDetails(this.contact, {this.onContactUpdate, this.onContactDelete});
+  ContactDetails(this.contact, {required this.onContactUpdate, required this.onContactDelete});
 
   final AppContact contact;
   final Function(AppContact) onContactUpdate;
@@ -139,7 +141,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                   children: <Widget>[
                     ListTile(title: Text("Phones")),
                     Column(
-                      children: widget.contact.info.phones
+                      children: widget.contact.info.phones!
                           .map(
                             (i) => Padding(
                           padding:
