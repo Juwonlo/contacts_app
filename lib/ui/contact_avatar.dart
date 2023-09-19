@@ -1,8 +1,8 @@
 
-import 'package:contacts_app/utils/get-color-gradient.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/app_contact.dart';
+import 'mycolor-gradient.dart';
 
 class ContactAvatar extends StatelessWidget {
   ContactAvatar(this.contact, this.size);
@@ -15,9 +15,9 @@ class ContactAvatar extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
             shape: BoxShape.circle, gradient: getColorGradient(contact.color)),
-        child: (contact.info.avatar != null && contact.info.avatar.length > 0)
+        child: (contact.info.avatar != null && contact.info.avatar!.isNotEmpty)
             ? CircleAvatar(
-          backgroundImage: MemoryImage(contact.info.avatar),
+          backgroundImage: MemoryImage(contact.info.avatar!),
         )
             : CircleAvatar(
             child: Text(contact.info.initials(),

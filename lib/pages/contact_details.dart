@@ -107,6 +107,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     ),
                     alignment: Alignment.topLeft,
                   ),
+
                   Align(
                     alignment: Alignment.topRight,
                     child: Padding(

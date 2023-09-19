@@ -1,10 +1,14 @@
 
-import 'package:contacts_app/pages/contact-details.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../pages/app_contact.dart';
 import '../../pages/contact_details.dart';
+<<<<<<< HEAD
 import 'contact-avatar.dart';
+=======
+import '../contact_avatar.dart';
+>>>>>>> 7684fe34d296a0a6615a6972b99bdbcf3d3b85ad
 
 class ContactsList extends StatelessWidget {
   final List<AppContact> contacts;
@@ -37,12 +41,17 @@ class ContactsList extends StatelessWidget {
                         )
                 ));
               },
-              title: Text(contact.info.displayName),
+              // title: Text(contact.info.displayName),
+              // subtitle: Text(
+              //     contact.info.phones.length > 0 ? contact.info.phones
+              //         .elementAt(0)
+              //         .value : ''
+              // ),
+              title: Text(contact.info.displayName ?? 'No Name'),
               subtitle: Text(
-                  contact.info.phones.length > 0 ? contact.info.phones
-                      .elementAt(0)
-                      .value : ''
+                contact.info.phones!.isNotEmpty ? contact.info.phones!.first.value! : 'No Phone Number',
               ),
+
               leading: ContactAvatar(contact, 36)
           );
         },
