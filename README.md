@@ -18,5 +18,5 @@ A new Flutter project.
 These are the packages used in this project:
 
 - [permission_handler](https://pub.dev/packages/permission_handler): A Flutter plugin to access and manage the device's contacts.
-- [contacts_service](https://pub.dev/packages/contacts_service): This plugin provides a cross-platform (iOS, Android) API to request permissions and check their status.
+- [contacts_service](https://pub.dev/packages/contacts_service): This plugin provides a cross-platform (iOS, Android, web) API to request permissions and check their status.
 
